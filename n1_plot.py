@@ -1,6 +1,7 @@
 """
 Code of Project-1 Network Backup Dataset
 EE219 2017 Winter
+Task 1: Plot the distribution of sum of data backup every 21 days
 
 Zeyu Li
 Jan 21, 2017
@@ -9,15 +10,8 @@ Jan 21, 2017
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import tools
 
-
-def read_data(file_name):
-    """
-    Read the cvs dataset file and return the dataframe of input data set
-    :return: Pandas DataFrame of the data set csv file
-    """
-    dataset = pd.read_csv(file_name)
-    return dataset
 
 
 def transform_weekday(data_frame, weekday_column_name, new_column_name):
@@ -56,7 +50,7 @@ def calculate_num_day(data_frame, new_column_name, week_num_column_name, weekday
 
 if __name__ == '__main__':
     input_file_name = 'network_backup_dataset.csv'
-    original_data = read_data(input_file_name)
+    original_data = tools.read_data(input_file_name)
     data = transform_weekday(original_data, 'Day of Week', 'Number of Weekday')
     data = calculate_num_day(data, 'Num of the day', 'Week #', 'Number of Weekday')
 
