@@ -1,6 +1,6 @@
 #################################################################
 ##  EE219 Network-Backup-Dataset.
-##  Task 2. Computing P-value with linear regression.
+##  Task 2-a. Computing P-value with linear regression.
 ##  
 ##  Zeyu Li
 ##  Jan 23, 2017

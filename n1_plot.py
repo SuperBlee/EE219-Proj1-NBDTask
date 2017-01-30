@@ -92,7 +92,7 @@ if __name__ == '__main__':
 
     # Start to plot
     x_days = np.arange(1,22)
-    fig = plt.figure(figsize=(30,20))
+    fig = plt.figure(figsize=(45,30))
 
     for i in period_list:
         for j in i:
@@ -102,17 +102,19 @@ if __name__ == '__main__':
         # for j in range(0,5):
             # y_data = np.array(period_list[i][j])
         # y_data = period_list[i][3]
-        sub_fig.plot(x_days, period_list[i][1], '-',
-                     x_days, period_list[i][2], '-',
-                     x_days, period_list[i][3], '-',
-                     x_days, period_list[i][0], '-',
-                     x_days, period_list[i][4], '-')
+        sub_fig.plot(x_days, period_list[i][0], '-', label = 'Workflow 0')
+        sub_fig.plot(x_days, period_list[i][1], '-', label = 'Workflow 1')
+        sub_fig.plot(x_days, period_list[i][2], '-', label = 'Workflow 2')
+        sub_fig.plot(x_days, period_list[i][3], '-', label = 'Workflow 3')
+        sub_fig.plot(x_days, period_list[i][4], '-', label = 'Workflow 4')
+        sub_fig.legend()
         sub_fig.set_xticks(x_days)
         sub_fig.set_title("Data of {}-th Week".format(i))
         sub_fig.set_xlabel("# of Days")
         sub_fig.set_ylabel("Sum of Size of Backup (GB)")
         sub_fig.set_xlim([0.5, 21.5])
         sub_fig.set_ylim([0, 13])
+        # sub_fig.
     fig.savefig('NBD_Task1.png')
 
 
