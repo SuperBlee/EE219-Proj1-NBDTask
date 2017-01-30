@@ -7,7 +7,6 @@ Zeyu Li
 Jan 21, 2017
 
 """
-import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import tools
@@ -56,15 +55,10 @@ if __name__ == '__main__':
 
     # Group the data by 'Week #', 'Number of Weekday' and take the sum of "Size of Backup (GB)"
     grouped_data = data.groupby(['Week #', 'Work-Flow-ID', 'Number of Weekday'])['Size of Backup (GB)'].sum()
-    # print grouped_data
     listed_data = list(grouped_data)
-    print grouped_data
-    # print listed_data
-    # print len(listed_data)
 
     # The listed data has len of 525
     # 15 Weeks * 5 Workflows * 7 Days/Week
-    # sep_listed_data = [listed_data[x:x+21] for x in range(0, len(listed_data), 21)]
 
     # Divided by 3 weeks, should be 5 period
     by_three_weeks = [listed_data[i:i+105] for i in range(0, len(listed_data), 105)]
@@ -83,13 +77,6 @@ if __name__ == '__main__':
             list_all_wf.append(list_wf)
         period_list.append(list_all_wf)
 
-
-    # for i in range(0,len(period_list)):
-    #     for j in range(0,5):
-    #         print period_list[i][j]
-    #         print len(period_list[i][j])
-
-
     # Start to plot
     x_days = np.arange(1,22)
     fig = plt.figure(figsize=(45,30))
@@ -99,9 +86,6 @@ if __name__ == '__main__':
             print len(j)
     for i in range(0,len(period_list)):
         sub_fig = fig.add_subplot(2,3, i+1)
-        # for j in range(0,5):
-            # y_data = np.array(period_list[i][j])
-        # y_data = period_list[i][3]
         sub_fig.plot(x_days, period_list[i][0], '-', label = 'Workflow 0')
         sub_fig.plot(x_days, period_list[i][1], '-', label = 'Workflow 1')
         sub_fig.plot(x_days, period_list[i][2], '-', label = 'Workflow 2')
@@ -114,20 +98,4 @@ if __name__ == '__main__':
         sub_fig.set_ylabel("Sum of Size of Backup (GB)")
         sub_fig.set_xlim([0.5, 21.5])
         sub_fig.set_ylim([0, 13])
-        # sub_fig.
     fig.savefig('NBD_Task1.png')
-
-
-
-
-     # for i in range(0, len(sep_listed_data)):
-    #     fig_list.append(fig.add_subplot(2, 3, i+1))
-    #     fig_list[i].plot(x_days, sep_listed_data[i], '-')
-    #     print sep_listed_data[i]
-    #     fig_list[i].set_xticks(x_days)
-    #     fig_list[i].set_title("Data of {}-th Week".format(i))
-    #     fig_list[i].set_xlabel("# of Days")
-    #     fig_list[i].set_ylabel("Sum of Size of Backup (GB)")
-    #     fig_list[i].set_xlim([1, 21])
-    #     fig_list[i].set_ylim([5, 20])
-    # fig.savefig('NBD_Task1.png')
